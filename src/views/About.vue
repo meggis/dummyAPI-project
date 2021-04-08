@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <div>
-      <pre>{{ response }}</pre>
+      <p>Your activity for today: {{ response }}</p>
     </div>
   </div>
 </template>
@@ -13,15 +13,16 @@ export default {
   name: 'About',
   data () {
     return {
-      response: null
+      response: null,
     }
   },
   mounted () {
     this.fetchPizzas()
+    console.log(this.$header)
   },
   methods: {
     async fetchPizzas () {
-      this.response = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(({ data }) => data)
+      this.response = await axios.get('https://dummyapi.io/data/api/user', { headers: this.$headers }).then(({data}) => data)
     }
   }
 }
