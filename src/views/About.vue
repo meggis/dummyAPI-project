@@ -17,11 +17,11 @@ export default {
     }
   },
   mounted () {
-    this.fetchPizzas()
+    this.fetchApi()
     console.log(this.$header)
   },
   methods: {
-    async fetchPizzas () {
+    async fetchApi () {
       this.response = await axios.get('https://dummyapi.io/data/api/user', { headers: this.$headers }).then(({data}) => data)
     }
   }
