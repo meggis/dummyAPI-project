@@ -2,28 +2,31 @@
   <div class="about">
     <h1>This is an about page</h1>
     <div>
-      <p>Your activity for today: {{ response }}</p>
+      <p class="text-left">Your activity for today:</p>
+      <pre class="text-left">{{ users }}</pre>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
+import { mapState } from "vuex";
 
 export default {
-  name: 'About',
-  data () {
+  name: "About",
+  data() {
     return {
       response: null,
-    }
+    };
   },
-  mounted () {
-    this.fetchApi()
-    console.log(this.$header)
+  computed: {
+    ...mapState("user", ["users", "loading"]),
   },
-  methods: {
-    async fetchApi () {
-      this.response = await axios.get('https://dummyapi.io/data/api/user', { headers: this.$headers }).then(({data}) => data)
-    }
-  }
-}
+  async mounted() {
+    await this.$store.dispatch("user/fetchUsers");
+  },
+};
 </script>
+<style scoped>
+.text-left {
+  text-align: left;
+}
+</style>
