@@ -12,20 +12,20 @@ export default ({ postApi }) => {
     async fetchPostsList({ commit }) {
       commit('setLoading', true)
       try {
-        commit('setPostsList', await postApi.getPostsList())
+        commit('setPosts', await postApi.getPostsList())
       } finally {
         commit('setLoading', false)
       }
     },
     async fetchSinglePost({ commit }, postId) {
-      commit('setSinglePost', await postApi.getSinglePost(postId))
+      commit('setPost', await postApi.getSinglePost(postId))
     },
-    async fetchUserPosts({ commit }, userId) {
-      commit('setUserPosts', await postApi.getUserPostsList(userId))
-    },
-    async getPostsByTag({ commit }, tagTitle) {
-      commit('setTagPosts', await postApi.getPostsByTag(tagTitle))
-    }
+    // async fetchUserPosts({ commit }, userId) {
+    //   commit('setUserPosts', await postApi.getUserPostsList(userId))
+    // },
+    // async getPostsByTag({ commit }, tagTitle) {
+    //   commit('setTagPosts', await postApi.getPostsByTag(tagTitle))
+    // }
   }
 
   const mutations = {}

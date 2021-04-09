@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import createUserStore from './user'
+import createUserPost from './post'
 
 Vue.use(Vuex)
 
@@ -9,7 +10,8 @@ Vue.use(Vuex)
 export default (deps) => {
   return new Vuex.Store({
     modules: {
-      user: createUserStore(deps)
+      user: createUserStore(deps),
+      post: createUserPost(deps)
     },
   })
 }

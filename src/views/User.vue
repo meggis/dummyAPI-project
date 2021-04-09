@@ -1,6 +1,6 @@
  <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="User Endpoints">
+    <h1>This page about users</h1>
     <div>
       <p class="text-left">Your activity for today:</p>
       <pre class="text-left">{{ user }}</pre>
@@ -16,7 +16,7 @@ import { mapState } from "vuex";
 // const userId = userId
 
 export default {
-  name: "About",
+  name: "User",
   data() {
     return {
       response: null,
