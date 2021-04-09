@@ -1,3 +1,4 @@
+//skąd jest brany axios?
 export default ({ axios }) => {
   return {
     async getUsers () {
@@ -5,7 +6,7 @@ export default ({ axios }) => {
       return data;
     },
     async getUser(userId) {
-      const { data } = await axios.get(`/user/${userId}`).then(({data}) => data)
+      const { data } = await axios.get(`/user/${userId}`)
       return data;
     }
   }

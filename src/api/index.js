@@ -1,11 +1,10 @@
 import createUserApi from './user.js'
-import createPostApi from './post'
+import createPostApi from './post.js'
+
 
 export default ({ axios }) => {
   return {
     userApi: createUserApi({ axios }),
     postApi: createPostApi({ axios })
   }
-  //And some others components or methods//
-  
 }
