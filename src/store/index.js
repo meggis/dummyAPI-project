@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import createUserStore from './user'
-import createUserPost from './post'
+import createPostStore from './post'
+import createCommentsStore from './comment'
+import createTagStore from './tag'
 
 Vue.use(Vuex)
 
@@ -11,7 +13,9 @@ export default (deps) => {
   return new Vuex.Store({
     modules: {
       user: createUserStore(deps),
-      post: createUserPost(deps)
+      post: createPostStore(deps),
+      comment: createCommentsStore(deps),
+      tag: createTagStore(deps)
     },
   })
 }

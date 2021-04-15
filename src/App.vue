@@ -3,7 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/user">User Endpoints</router-link> |
-      <router-link to="/post">Users posts</router-link>
+      <router-link to="/post">Users posts</router-link> |
+      <router-link to="/comment">User comment</router-link> |
+      <router-link to="/tag">User tag list</router-link> 
     </div>
     <router-view/>
   </div>

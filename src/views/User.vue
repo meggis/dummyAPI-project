@@ -3,7 +3,8 @@
     <h1>This page about users</h1>
     <div>
       <p class="text-left">Your activity for today:</p>
-      <pre class="text-left">{{ user }}</pre>
+      <!-- <pre class="text-left">{{ user }}</pre> -->
+      <!-- <pre class="text-left">{{ users }}</pre> -->
       <ul v-for="user in users" :key="user.id">
         <li @click="handleClickOnUser(user)">{{ user }}</li>
       </ul>

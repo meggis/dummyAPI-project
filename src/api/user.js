@@ -2,7 +2,7 @@
 export default ({ axios }) => {
   return {
     async getUsers () {
-      const { data } = await axios.get('/user').then(({data}) => data)
+      const { data } = await axios.get('/user').then(({data}) => data)      
       return data;
     },
     async getUser(userId) {

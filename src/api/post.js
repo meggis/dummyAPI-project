@@ -8,13 +8,13 @@ export default ({ axios }) => {
       const { data } = await axios.get(`/post/${postId}`)
       return data;
     },
-    // async getUserPostsList(userId) {
-    //   const { data } = await axios.get(`/user/${userId}/post`)
-    //   return data;
-    // },
-    // async getPostsByTag(tagTitle) {
-    //   const { data } = await axios.get(`/user/${tagTitle}/post`)
-    //   return data;
-    // }
+    async getUserPostsList(userId) {
+      const { data } = await axios.get(`/user/${userId}/post`)
+      return data;
+    },
+    async getPostsByTag(tagTitle) {
+      const { data } = await axios.get(`/user/${tagTitle}/post`)
+      return data;
+    }
   }
 }
