@@ -1,24 +1,24 @@
 <template>
   <div id="app">
       <div id="nav">
-        <router-link to="/"></router-link>
-        <router-link to="/user">USER ENDPOINTS</router-link>
-        <router-link to="/post">Users posts</router-link>
-        <router-link to="/comment">User comment</router-link>
-        <router-link to="/tag">User tag list</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link to="/user">User list</router-link>
+        <router-link to="/post">Posts list</router-link>
+        <!-- <router-link to="/comment">User comment</router-link> -->
+        <router-link to="/tag">Post by tag</router-link>
       </div>
     <router-view />
   </div>
 </template>
-<style>
+<style scoped>
 #app {
   text-align: center;
-  color: white;
 }
 
 #nav {
   padding: 30px;
   border-bottom: solid white 1px;
+  color: white;
 }
 
 #nav a {

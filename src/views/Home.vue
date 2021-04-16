@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="font-color">
     <b-container>
-      <b-row align-v="center" align-h="center" class="my-4 text-left">
+      <b-row align-v="center" align-h="center" class="my-4 text-center">
         <b-col cols="4" class="my-5">
           <h1>Demo API Data Explorer</h1>
         </b-col>
@@ -17,19 +17,34 @@
         <h5>Click on links to move between different data sets.</h5>
         <b-row align-v="center" align-h="center" class="pt-4">
           <b-col>
-            <b-button class="mr-3">User List</b-button>
-            <b-button class="mr-3">Posts List</b-button>
-            <b-button>Post by Tag</b-button>
+            <b-button class="mr-3" @click="userHandlerClick()">User List</b-button>
+            <b-button class="mr-3" @click="postsHandlerClick()">Posts List</b-button>
+            <b-button @click="tagHandlerClick()">Post by Tag</b-button>
           </b-col>
         </b-row>
       </div>
     </b-container>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    userHandlerClick() {
+      this.$router.push('./user')
+    },
+    postsHandlerClick() {
+      this.$router.push('./post')
+    },
+    tagHandlerClick() {
+      this.$router.push('./tag')
+    }
+  },
+}
+</script>
 
 <style scoped>
   .buttons {
-  padding: 60px;
+  padding: 80px;
 }
 
 .btn-secondary {
@@ -40,6 +55,9 @@
 .btn-secondary:hover {
   background-color: white;
   border-color: transparent;
+}
 
+.font-color {
+  color: white
 }
 </style>
