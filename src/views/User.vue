@@ -1,14 +1,10 @@
  <template>
   <div class="User Endpoints">
-    <h1>This page about users</h1>
-    <div>
-      <p class="text-left">Your activity for today:</p>
-      <!-- <pre class="text-left">{{ user }}</pre> -->
-      <!-- <pre class="text-left">{{ users }}</pre> -->
-      <ul v-for="user in users" :key="user.id">
-        <li @click="handleClickOnUser(user)">{{ user }}</li>
-      </ul>
-    </div>
+        <!-- <pre class="text-left">{{ user }}</pre> -->
+        <!-- <pre class="text-left">{{ users }}</pre> -->
+        <ul v-for="user in users" :key="user.id">
+          <li @click="handleClickOnUser(user)">{{ user }}</li>
+        </ul>
   </div>
 </template>
 <script>
@@ -30,14 +26,14 @@ export default {
   },
   async mounted() {
     //dispath zawsze odnosi się do akcji w storze
-    //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają) 
-      await this.$store.dispatch('user/fetchUsers')
+    //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają)
+    await this.$store.dispatch("user/fetchUsers");
   },
   methods: {
     async handleClickOnUser(user) {
-      await this.$store.dispatch('user/fetchUser', user.id)
-    }
-  }
+      await this.$store.dispatch("user/fetchUser", user.id);
+    },
+  },
 };
 </script>
 <style scoped>
