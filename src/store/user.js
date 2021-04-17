@@ -3,7 +3,7 @@ import { createSettersFromStateKeys } from '../utils/store-helper'
 const initialState = {
   users: null,
   loading: false,
-  user: null
+  user: null,
 }
 
 //{} mówią o tym że bieżemy ten obiekt i wposujemy co wyciągamy z tego obiektu
@@ -192,31 +192,35 @@ export default ({ userApi }) => {
       }
     },
     async fetchUser({ commit }, userId) {
-      // commit('setUser', await userApi.getUser(userId))
+      commit('setLoading', true)
+      try {
+      commit('setUser', await userApi.getUser(userId))
+    } finally {
+      ('setLoading', false)
+    }
 
 
-
-      console.log(userId)
-      const data = {
-        "id": "0F8JIqi4zwvb77FGz6Wt",
-        "phone": "0700-3090279",
-        "lastName": "Fiedler",
-        "firstName": "Heinz-Georg",
-        "location": {
-          "state": "Rheinland-Pfalz",
-          "street": "4118, Schulstraße",
-          "city": "Fellbach",
-          "timezone": "-7:00",
-          "country": "Germany"
-        },
-        "email": "heinz-georg.fiedler@example.com",
-        "gender": "male",
-        "title": "mr",
-        "registerDate": "2020-03-07T00:42:32.221Z",
-        "picture": "https://randomuser.me/api/portraits/men/81.jpg",
-        "dateOfBirth": "1974-03-12T21:15:08.878Z"
-      }
-      commit('setUser', data)
+      // console.log(userId)
+      // const data = {
+      //   "id": "0F8JIqi4zwvb77FGz6Wt",
+      //   "phone": "0700-3090279",
+      //   "lastName": "Fiedler",
+      //   "firstName": "Heinz-Georg",
+      //   "location": {
+      //     "state": "Rheinland-Pfalz",
+      //     "street": "4118, Schulstraße",
+      //     "city": "Fellbach",
+      //     "timezone": "-7:00",
+      //     "country": "Germany"
+      //   },
+      //   "email": "heinz-georg.fiedler@example.com",
+      //   "gender": "male",
+      //   "title": "mr",
+      //   "registerDate": "2020-03-07T00:42:32.221Z",
+      //   "picture": "https://randomuser.me/api/portraits/men/81.jpg",
+      //   "dateOfBirth": "1974-03-12T21:15:08.878Z"
+      // }
+      // commit('setUser', data)
     },
   }
 

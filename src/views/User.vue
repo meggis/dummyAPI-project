@@ -1,28 +1,42 @@
  <template>
   <div class="User Endpoints">
     <b-container>
-      <div>
-        <b-card-group columns class="my-5">
-          <b-card v-for="user in users"
-          :key="user.id" 
+      <b-row class="mt-0 p-5">
+        <b-col>
+          <p class="p-colour">
+            See some example of random fake user list below.
+          </p>
+        </b-col>
+      </b-row>
+      <b-card-group columns>
+        <b-card
+          v-for="user in users"
+          class="p-3"
+          style="max-width: 13rem"
+          :key="user.id"
           :img-src="user.picture"
           :header="user.email"
-          :title="user.title + ' ' + user.lastName">
+          :title="user.title + ' ' + user.lastName"
+          footer-tag="footer"
+        >
           <b-card-text>User id: {{ user.id }}</b-card-text>
-            <b-button class="mb-1" @click="handleClickOnUser(user)">View full profile</b-button>
-            <b-button class="mb-1" @click="handleClickOnUser(user)">View View Posts list</b-button>
-          </b-card>
-        </b-card-group>
-      </div>
+          <template #footer class="justify-content-center">
+          <b-button class="mb-1" @click="handleClickOnUser(user.id)"
+            >View full profile</b-button
+          >
+          <b-button class="mb-1" @click="handleClickOnUserPost(user)"
+            >View Posts list</b-button
+          >
+          </template>
+        </b-card>
+      </b-card-group>
       <!-- <pre class="text-left">{{ user }}</pre> -->
       <!-- <pre class="text-left">{{ users }}</pre> -->
     </b-container>
-  </div>
+    </div>
 </template>
 <script>
 import { mapState } from "vuex";
-
-// const userId = userId
 
 export default {
   name: "User",
@@ -42,20 +56,54 @@ export default {
     await this.$store.dispatch("user/fetchUsers");
   },
   methods: {
-    async handleClickOnUser(user) {
-      await this.$store.dispatch("user/fetchUser", user.id);
+    handleClickOnUser(userId) {
+      this.$router.push(`./Profile/${userId}`)
+    },
+    handleClickOnUserPost() {
+      this.$router.push()
     },
   },
 };
 </script>
 <style scoped>
+
+
 .text-left {
   text-align: left;
 }
 
-.btn-secondary{
+.btn-secondary {
   background-color: white;
   border-color: black;
   color: black;
 }
+
+.btn {
+  font-size: 10px;
+}
+
+.btn:hover {
+  background-color: rgb(214, 41, 107);
+}
+
+h4{
+  font-size: 20px;
+}
+
+.card-body {
+  padding: 5px;
+  font-size: 11px;
+  justify-content: center;
+  align-items: center;
+}
+
+footer.card-footer {
+  padding: 0;
+  padding-top: 16px;
+}
+
+.p-colour {
+  color: white;
+}
+
 </style>

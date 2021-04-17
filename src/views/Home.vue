@@ -8,7 +8,8 @@
         <b-col cols="5">
           <p>
             Example of API User Data limited to 10 items per collection. This
-            project is based on REST data API endpoints interface.
+            project is based on 
+            <a href='https://dummyapi.io'> REST data API </a> endpoints interface.
           </p>
         </b-col>
       </b-row>
@@ -55,9 +56,23 @@ export default {
 .btn-secondary:hover {
   background-color: white;
   border-color: transparent;
+  color: #f43b47;
 }
 
 .font-color {
   color: white
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: grey;
+}
+
+hr{
+  background: white;
 }
 </style>
