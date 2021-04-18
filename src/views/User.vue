@@ -8,25 +8,28 @@
           </p>
         </b-col>
       </b-row>
-      <b-card-group columns>
+      <b-card-group deck>
         <b-card
           v-for="user in users"
-          class="p-3"
-          style="max-width: 13rem"
+          class="p-3 mb-4"
           :key="user.id"
           :img-src="user.picture"
           :header="user.email"
           :title="user.title + ' ' + user.lastName"
+          style="max-width:300px"
           footer-tag="footer"
         >
           <b-card-text>User id: {{ user.id }}</b-card-text>
           <template #footer class="justify-content-center">
-          <b-button class="mb-1" @click="handleClickOnUser(user.id)"
-            >View full profile</b-button
-          >
-          <b-button class="mb-1" @click="handleClickOnUserPost(user)"
-            >View Posts list</b-button
-          >
+            <b-button-group vertical>
+              <b-button class="mb-1" @click="handleClickOnUser(user.id)"
+                >View full profile</b-button
+              >
+              <b-button class="mb-1" @click="handleClickOnUserPost(user)"
+                >View Posts list</b-button
+              >
+
+            </b-button-group>
           </template>
         </b-card>
       </b-card-group>
@@ -54,6 +57,7 @@ export default {
     //dispath zawsze odnosi się do akcji w storze
     //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają)
     await this.$store.dispatch("user/fetchUsers");
+    
   },
   methods: {
     handleClickOnUser(userId) {
@@ -104,6 +108,10 @@ footer.card-footer {
 
 .p-colour {
   color: white;
+}
+
+.card {
+  min-width: unset;
 }
 
 </style>

@@ -3,10 +3,10 @@
       <div id="nav">
         <router-link to="/">Home</router-link>
         <router-link to="/user">User list</router-link>
-        <router-link to="/profile"></router-link>
         <router-link to="/post">Posts list</router-link>
         <!-- <router-link to="/comment">User comment</router-link> -->
         <router-link to="/tag">Post by tag</router-link>
+        <router-link to="/profile"></router-link>
       </div>
     <router-view />
   </div>
