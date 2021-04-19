@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import createAxios from './utils/create-axios'
 import createApi from './api/index.js'
-import createStore from './store'
+import createStore from './store/index.js'
 
 //Regułą aby wyłączyć informację w konsoli 'You are running Vue in development mode.'
 Vue.config.productionTip = false

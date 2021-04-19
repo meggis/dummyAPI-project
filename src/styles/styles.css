@@ -1,0 +1,13 @@
+html {
+  height: 100%;
+}
+
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+hr {
+  color: white;
+  height: 10px;
+}

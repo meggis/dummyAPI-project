@@ -11,7 +11,31 @@
     <router-view />
   </div>
 </template>
-<style scoped>
+
+<style>
+html {
+  height: 100%;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+hr {
+  color: white;
+  height: 10px;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+  font-family: 'Comfortaa', cursive;
+  font-size: 10px;
+}
+
 #app {
   text-align: center;
 }

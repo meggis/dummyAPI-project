@@ -21,7 +21,7 @@
         >
           <b-card-text>User id: {{ user.id }}</b-card-text>
           <template #footer class="justify-content-center">
-            <b-button-group vertical>
+            <b-button-group>
               <b-button class="mb-1" @click="handleClickOnUser(user.id)"
                 >View full profile</b-button
               >
@@ -57,6 +57,7 @@ export default {
     //dispath zawsze odnosi się do akcji w storze
     //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają)
     await this.$store.dispatch("user/fetchUsers");
+
     
   },
   methods: {

@@ -3,6 +3,7 @@ import { createSettersFromStateKeys } from '../utils/store-helper'
 const initialState = {
   users: null,
   loading: false,
+  userLoading: false,
   user: null,
 }
 
@@ -192,11 +193,11 @@ export default ({ userApi }) => {
       }
     },
     async fetchUser({ commit }, userId) {
-      commit('setLoading', true)
+      commit('setUserLoading', true)
       try {
       commit('setUser', await userApi.getUser(userId))
     } finally {
-      ('setLoading', false)
+      commit('setUserLoading', false)
     }
 
 
@@ -222,6 +223,13 @@ export default ({ userApi }) => {
       // }
       // commit('setUser', data)
     },
+    async destroyUser({ commit }) {
+      commit('setUser', null)
+    },
+    // async fetchLocation({ commit }) {
+    //   commit('setLocation', await userApi.geocode())
+    // }
+
   }
 
   const mutations = {}
