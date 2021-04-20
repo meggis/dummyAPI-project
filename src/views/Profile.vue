@@ -8,7 +8,7 @@
       <b-container class="py-5">
         <b-card>
           <b-row align-v="center">
-            <b-col md="5" class="photo-class">
+            <b-col md="4" class="photo-class">
               <b-card-img :src="user.picture" fluid style="max-width: 300px">
               </b-card-img>
             </b-col>
@@ -37,7 +37,7 @@
                 <b-list-group-item></b-list-group-item>
               </b-list-group>
             </b-col>
-            <b-col md="3">
+            <b-col md="4" class="mb-3">
               <b-list-group class="text-left">
                 <b-list-group-item
                   ><strong>Email: </strong> {{ user.email }}</b-list-group-item
@@ -57,8 +57,19 @@
                     user.location.street
                   }}</b-list-group-item
                 >
-
               </b-list-group>
+              <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
+               Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
+               Now, location data is ready to use in google maps.-->
+              <b-card-img
+                src="https://maps.googleapis.com/maps/api/staticmap?markers=Jasper,Newfoundland%20and%20Labrador,6721,%20George%20St,Canada&center=Jasper,Newfoundland%20and%20Labrador,6721,%20George%20St,Canada&zoom=8&size=600x300&key=AIzaSyD9dyB7_5evAcVtSOf92NlVO8Cp0OdEwTA"
+              ></b-card-img>
+            </b-col>
+          </b-row>
+          <hr>
+          <b-row>
+            <b-col class="mt-3">
+              <a href="#" class="link">Get posts list</a>
             </b-col>
           </b-row>
         </b-card>
@@ -69,9 +80,9 @@
 
 <script>
 import { mapState } from "vuex";
-import axios from 'axios'
+import axios from "axios";
 
-const access_key = 'c5e5ddf68ce26712ade1b487127b77c7'
+const access_key = "c5e5ddf68ce26712ade1b487127b77c7";
 
 export default {
   name: "Profile",
@@ -89,28 +100,29 @@ export default {
   async mounted() {
     await this.$store.dispatch("user/fetchUser", this.id);
     // this.response = await axios.get('http://api.positionstack.com/v1/forward?access_key=c5e5ddf68ce26712ade1b487127b77c7&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC')
-    this.response = await axios.get('http://api.positionstack.com/v1/forward', {
-      params: { access_key, query: "Powstańców Śląskich 50/34 53-333 Wrocław Polska"  }
-    }).then(({data}) => data)
-    .then(({data}) => data)
-    console.log(this.response)
+    this.response = await axios
+      .get("http://api.positionstack.com/v1/forward", {
+        params: { access_key, query: `${this.user.location}` },
+      })
+      .then(({ data }) => data)
+      .then(({ data }) => data);
+    console.log(this.response);
   },
   async beforeDestroy() {
-    this.$store.dispatch('user/destroyUser')
+    this.$store.dispatch("user/destroyUser");
   },
   // async geocode() {
-      // .then(function(response) {
-      //   console.log(response)
-      // })
-      // .catch(function(error) {
-      //   console.log(error)
-      // })
-    // },
+  // .then(function(response) {
+  //   console.log(response)
+  // })
+  // .catch(function(error) {
+  //   console.log(error)
+  // })
+  // },
   methods: {
     backClickHandle() {
       this.$router.push("../user");
     },
-
   },
 };
 </script>
@@ -121,7 +133,6 @@ export default {
   border-color: white;
 }
 
-
 .btn-secondary:hover {
   background-color: white;
   border-color: transparent;
@@ -130,5 +141,9 @@ export default {
 
 .list-group-item {
   border: 0px;
+}
+
+.link{
+  color: #3a11be;
 }
 </style>
