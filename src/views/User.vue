@@ -4,7 +4,7 @@
       <b-row class="mt-0 p-5">
         <b-col>
           <p class="p-colour">
-            See some example of random fake user list below.
+            See some example of random fake posts list below.
           </p>
         </b-col>
       </b-row>
@@ -73,10 +73,6 @@ export default {
 <style scoped>
 
 
-.text-left {
-  text-align: left;
-}
-
 .btn-secondary {
   background-color: white;
   border-color: black;
@@ -91,7 +87,7 @@ export default {
   background-color: rgb(214, 41, 107);
 }
 
-h4{
+/* h4{
   font-size: 20px;
 }
 
@@ -113,6 +109,6 @@ footer.card-footer {
 
 .card {
   min-width: unset;
-}
+} */
 
 </style>

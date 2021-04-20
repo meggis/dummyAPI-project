@@ -17,7 +17,7 @@
                 <b-list-group-item
                   ><strong>Id: </strong> {{ user.id }}</b-list-group-item
                 >
-                <b-list-group-item
+                <b-list-group-item class="bigger-font"
                   ><strong>{{
                     user.title + " " + user.firstName + " " + user.lastName
                   }}</strong></b-list-group-item
@@ -145,5 +145,13 @@ export default {
 
 .link{
   color: #3a11be;
+}
+
+.card-body{
+  font-size: 12px
+}
+
+.bigger-font {
+  font-size: 18px;
 }
 </style>

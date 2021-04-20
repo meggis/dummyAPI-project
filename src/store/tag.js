@@ -1,7 +1,7 @@
 import { createSettersFromStateKeys } from '../utils/store-helper'
 
 const initialState = {
-  tag: null,
+  tags: null,
   loading: false
 }
 
@@ -13,7 +13,7 @@ export default ({ tagApi }) => {
       try {
         //nazywasz set + nazwa key w initialState
         //metoda commit służy do przypisania za pomocą 'set+'nazwaState', po przecinku tego co ma być wykonane
-        commit('setTag', await tagApi.getTag())
+        commit('setTags', await tagApi.getTag())
       } finally {
         commit('setLoading', false)
       }
