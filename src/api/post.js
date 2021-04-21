@@ -9,7 +9,7 @@ export default ({ axios }) => {
       return data;
     },
     async getUserPostsList(userId) {
-      const { data } = await axios.get(`/user/${userId}/post`)
+      const { data } = await axios.get(`/user/${userId}/post`).then(({data}) => data)
       return data;
     },
     async getPostsByTag(tagTitle) {

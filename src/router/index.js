@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/User',
+    path: '/user',
     name: 'User',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,24 +19,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/User.vue')
   },
   {
-    path: '/Post',
+    path: '/post',
     name: 'Post',
     component: () => import('../views/Post.vue')
   },
   {
-    path: '/Comment',
+    path: '/comment/:id',
     name: 'Comment',
     component: () => import('../views/Comment.vue')
   },
   {
-    path: '/Tag',
+    path: '/tag',
     name: 'Tag',
     component: () => import ('../views/Tag.vue')
   },
   {
-    path: '/Profile/:id',
+    path: '/profile/:id',
     name: 'UserProfile',
     component: () => import ('../views/Profile.vue')
+  },
+  {
+    path: '/user-posts/:id',
+    name: 'UserPosts',
+    component: () => import ('../views/UserPosts.vue')
   }
 ]
 

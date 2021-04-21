@@ -4,6 +4,7 @@ const initialState = {
   posts: null,
   loading: false,
   post: null,
+  postLoading: false
 }
 
 export default ({ postApi }) => {
@@ -444,9 +445,14 @@ export default ({ postApi }) => {
     // async fetchSinglePost({ commit }, postId) {
     //   commit('setPost', await postApi.getSinglePost(postId))
     // },
-    // async fetchUserPosts({ commit }, userId) {
-    //   commit('setUserPosts', await postApi.getUserPostsList(userId))
-    // },
+    async fetchUserPosts({ commit }, userId) {
+      commit('setPostLoading', true)
+      try {
+        commit('setPosts', await postApi.getUserPostsList(userId))
+      } finally {
+        commit('setPostLoading', false)
+      }
+    },
     // async getPostsByTag({ commit }, tagTitle) {
     //   commit('setTagPosts', await postApi.getPostsByTag(tagTitle))
     // }

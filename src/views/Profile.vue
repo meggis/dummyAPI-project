@@ -7,69 +7,51 @@
     <div v-if="user && id && !userLoading">
       <b-container class="py-5">
         <b-card>
-          <b-row align-v="center">
-            <b-col md="4" class="photo-class">
-              <b-card-img :src="user.picture" fluid style="max-width: 300px">
+          <b-row align-v="center" align-h="between">
+            <b-col md="4">
+              <b-card-img :src="user.picture" fluid >
               </b-card-img>
             </b-col>
             <b-col md="4">
               <b-list-group class="text-left">
-                <b-list-group-item
-                  ><strong>Id: </strong> {{ user.id }}</b-list-group-item
-                >
-                <b-list-group-item class="bigger-font"
-                  ><strong>{{
-                    user.title + " " + user.firstName + " " + user.lastName
-                  }}</strong></b-list-group-item
-                >
-                <b-list-group-item
-                  ><strong>Gender: </strong>
-                  {{ user.gender }}</b-list-group-item
-                >
-                <b-list-group-item
-                  ><strong>Date of birth: </strong>
-                  {{ user.dateOfBirth }}</b-list-group-item
-                >
-                <b-list-group-item
-                  ><strong>Register date: </strong>
-                  {{ user.registerDate }}</b-list-group-item
-                >
-                <b-list-group-item></b-list-group-item>
+                <b-list-group-item>
+                  <p><strong>Id: </strong> {{ user.id }}</p>
+                  <p class="bigger-font"><strong>{{ user.title + " " + user.firstName + " " + user.lastName }}</strong></p>
+                  <p><strong>Gender: </strong> {{ user.gender }}</p>
+                  <p><strong>Date of birth: </strong>{{ user.dateOfBirth }}</p>
+                  <p><strong>Register date: </strong>{{ user.registerDate }}</p>
+                  <p><strong>Email: </strong> {{ user.email }}</p>
+                  <p><strong>Phone: </strong> {{ user.phone }}</p>
+                </b-list-group-item>
               </b-list-group>
             </b-col>
             <b-col md="4" class="mb-3">
               <b-list-group class="text-left">
-                <b-list-group-item
-                  ><strong>Email: </strong> {{ user.email }}</b-list-group-item
-                >
-                <b-list-group-item
-                  ><strong>Phone: </strong> {{ user.phone }}</b-list-group-item
-                >
-                <b-list-group-item
-                  ><strong>Address: </strong>
-                  {{
+                <b-list-group-item>
+                  <p><strong>Address: </strong>{{
                     user.location.country +
                     ", " +
                     user.location.state +
                     ", " +
                     user.location.city +
                     ", " +
-                    user.location.street
-                  }}</b-list-group-item
-                >
+                    user.location.street }}</p>
+                  </b-list-group-item>
               </b-list-group>
               <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
                Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
                Now, location data is ready to use in google maps.-->
               <b-card-img
-                src="https://maps.googleapis.com/maps/api/staticmap?markers=Jasper,Newfoundland%20and%20Labrador,6721,%20George%20St,Canada&center=Jasper,Newfoundland%20and%20Labrador,6721,%20George%20St,Canada&zoom=8&size=600x300&key=AIzaSyD9dyB7_5evAcVtSOf92NlVO8Cp0OdEwTA"
+                :src="require('../components/google-maps.png')"
               ></b-card-img>
             </b-col>
           </b-row>
-          <hr>
+          <hr />
           <b-row>
             <b-col class="mt-3">
-              <a href="#" class="link">Get posts list</a>
+              <a href="#" @click="handlePostClick()" class="link"
+                >Get posts list</a
+              >
             </b-col>
           </b-row>
         </b-card>
@@ -106,7 +88,6 @@ export default {
       })
       .then(({ data }) => data)
       .then(({ data }) => data);
-    console.log(this.response);
   },
   async beforeDestroy() {
     this.$store.dispatch("user/destroyUser");
@@ -131,6 +112,7 @@ export default {
 .btn-secondary {
   background-color: transparent;
   border-color: white;
+  color: white;
 }
 
 .btn-secondary:hover {
@@ -143,15 +125,12 @@ export default {
   border: 0px;
 }
 
-.link{
+.link {
   color: #3a11be;
-}
-
-.card-body{
-  font-size: 12px
 }
 
 .bigger-font {
   font-size: 18px;
 }
+
 </style>

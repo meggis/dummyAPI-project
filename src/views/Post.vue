@@ -8,7 +8,7 @@
           </p>
         </b-col>
       </b-row>
-      <b-card-group columns md="4">
+      <b-card-group columns>
         <b-card v-for="post in posts" class="p-3 mb-4" :key="post.id">
           <template #header>
             <h4 class="mb-0 text-left">
@@ -18,36 +18,31 @@
               </span>
             </h4>
           </template>
-          <b-card-body>
-            <b-card-img class="mb-1" :src="post.image"></b-card-img>
-            <b-group v-for="tag in post.tags" :key="tag">
-              <span class="span-tag">{{ tag }}</span>
-            </b-group>
-          </b-card-body>
-          <b-list-group>
+          <b-card-img class="mb-2" :src="post.image"></b-card-img>
+          <span v-for="tag in post.tags" :key="tag">
+            <span class="span-tag">{{ tag }}</span>
+          </span>
+          <b-list-group class="mt-2">
             <b-list-group-item>
-              <p class="p-class">{{ post.text }}</p>
+              <p class="p-class text-left">{{ post.text }}</p>
               <a href="">{{ post.link }}</a>
             </b-list-group-item>
-            <b-list-group-item>
+            <b-list-group-item class="heart-class">
               <span>
-              <b-icon icon="suit-heart-fill"></b-icon>
-              {{ post.likes }} Likes
+                <b-icon icon="suit-heart-fill"></b-icon>
+                {{ post.likes }} Likes
               </span>
               {{ post.publishDate }}
             </b-list-group-item>
           </b-list-group>
-
-          <div class="justify-content-center mt-3">
-            <b-button-group>
-              <b-button class="mb-1" @click="handleClickOnUser()"
-                >Get post comments</b-button
-              >
-              <b-button class="mb-1" @click="handleClickOnUserPost()"
-                >Get owner profile</b-button
-              >
-            </b-button-group>
-          </div>
+          <b-button-group class="justify-content-center mt-3">
+            <b-button @click="handleClickOnComment()"
+              >Get post comments</b-button
+            >
+            <b-button @click="handleClickOnOwner(post.owner.id)"
+              >Get owner profile</b-button
+            >
+          </b-button-group>
         </b-card>
       </b-card-group>
       <!-- <pre class="text-left">{{ user }}</pre> -->
@@ -68,14 +63,19 @@ export default {
   },
   computed: {
     ...mapState("post", ["post", "loading", "posts"]),
-    ...mapState("tag", ["loading", "tags"]),
   },
   async mounted() {
     await this.$store.dispatch("post/fetchPostsList");
   },
   methods: {
-    async handlePostClick(post) {
-      await this.$store.dispatch("comment/fetchComment", post.id);
+    // async handlePostClick(post) {
+    //   await this.$store.dispatch("comment/fetchComment", post.id);
+    // },
+    handleClickOnComment() {
+      this.$router.push("./");
+    },
+    handleClickOnOwner(userId) {
+      this.$router.push(`./Profile/${userId}`);
     },
   },
 };
@@ -89,7 +89,7 @@ h4 {
 }
 
 .card-body {
-  padding: 5px;
+  padding: 6px 0px 0px 0px;
   font-size: 11px;
   justify-content: center;
   align-items: center;
@@ -115,6 +115,7 @@ footer.card-footer {
 
 .span-text {
   font-size: 10px;
+  margin-top: 5px;
 }
 
 .card-header {
@@ -124,10 +125,13 @@ footer.card-footer {
 
 .span-tag {
   background-color: rgb(214, 41, 107);
-  margin-right: 5px;
-  padding: 0 3px 0 3px;
+  margin: 5px;
+  padding: 2px 4px 4px;
   border-radius: 4px;
   color: white;
+  word-wrap: break-word;
+  display: inline-block;
+  word-break: break-all;
 }
 
 .btn-secondary {
@@ -142,6 +146,8 @@ footer.card-footer {
 
 .btn:hover {
   background-color: rgb(214, 41, 107);
+  color: white;
+  border-color: rgb(214, 41, 107);
 }
 
 .p-class {
@@ -149,7 +155,8 @@ footer.card-footer {
   margin-bottom: 0;
 }
 
-p {
-  padding-top: 5px;
+.heart-class {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

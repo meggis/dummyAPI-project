@@ -8,33 +8,31 @@
           </p>
         </b-col>
       </b-row>
-      <b-card-group deck>
-        <b-card
-          v-for="user in users"
-          class="p-3 mb-4"
-          :key="user.id"
-          :img-src="user.picture"
-          :header="user.email"
-          :title="user.title + ' ' + user.lastName"
-          style="max-width:300px"
-          footer-tag="footer"
-        >
-          <b-card-text>User id: {{ user.id }}</b-card-text>
-          <template #footer class="justify-content-center">
-            <b-button-group>
-              <b-button class="mb-1" @click="handleClickOnUser(user.id)"
-                >View full profile</b-button
-              >
-              <b-button class="mb-1" @click="handleClickOnUserPost(user)"
-                >View Posts list</b-button
-              >
+      <b-row>
+        <b-col>
+        <b-card-group columns class="justify-content-center">
+          <b-card
+            v-for="user in users"
+            class="p-3 mb-4"
+            :key="user.id"
+            :img-src="user.picture"
+            :header="user.email"
+            :title="user.title + ' ' + user.lastName"
+            footer-tag="footer">
+            <b-card-text>User id: {{ user.id }}</b-card-text>
+            <template #footer class="justify-content-center">
+              <b-button-group>
+                <b-button class="mb-1" @click="handleClickOnUser(user.id)"
+                  >View full profile</b-button>
+                <b-button class="mb-1" @click="handleClickOnUserPost(user.id)"
+                  >View posts list</b-button>
+              </b-button-group>
+            </template>
+          </b-card>
+        </b-card-group>
 
-            </b-button-group>
-          </template>
-        </b-card>
-      </b-card-group>
-      <!-- <pre class="text-left">{{ user }}</pre> -->
-      <!-- <pre class="text-left">{{ users }}</pre> -->
+        </b-col>
+      </b-row>
     </b-container>
     </div>
 </template>
@@ -62,10 +60,10 @@ export default {
   },
   methods: {
     handleClickOnUser(userId) {
-      this.$router.push(`./Profile/${userId}`)
+      this.$router.push(`./profile/${userId}`)
     },
-    handleClickOnUserPost() {
-      this.$router.push()
+    handleClickOnUserPost(userId) {
+      this.$router.push(`./user-posts/${userId}`)
     },
   },
 };
@@ -85,14 +83,15 @@ export default {
 
 .btn:hover {
   background-color: rgb(214, 41, 107);
+  color: white;
+  border-color: rgb(214, 41, 107);
 }
 
-/* h4{
+h4{
   font-size: 20px;
 }
 
 .card-body {
-  padding: 5px;
   font-size: 11px;
   justify-content: center;
   align-items: center;
@@ -109,6 +108,9 @@ footer.card-footer {
 
 .card {
   min-width: unset;
-} */
+}
 
+.card-header {
+  padding: 4px 0px 4px 0px;
+}
 </style>

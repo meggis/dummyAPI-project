@@ -1,10 +1,9 @@
-import post from '../api/post'
 import { createSettersFromStateKeys } from '../utils/store-helper'
 
 const initialState = {
   comment: null,
   loading: false,
-  postId: post.id
+  comments: null
 }
 
 export default ({ commentApi }) => {
@@ -12,11 +11,10 @@ export default ({ commentApi }) => {
     async fetchComment({ commit }, postId) {
       commit('setLoading', true)
         try {
-          commit('setComment', await commentApi.getCommentList(postId))
+          commit('setComments', await commentApi.getCommentList(postId))
         }
         finally {
           commit('setLoading', false)
-          console.log(`${postId}`)
         }
     }
   }
