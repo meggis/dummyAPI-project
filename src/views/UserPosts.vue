@@ -25,24 +25,39 @@
             <b-list-group class="mt-2">
               <b-list-group-item>
                 <p class="p-class text-left">{{ post.text }}</p>
-                <a href="">{{ post.link }}</a>
+                <a v-if="post.link" href="">{{ post.link }}</a>
               </b-list-group-item>
               <b-list-group-item class="heart-class">
                 <span>
                   <b-icon icon="suit-heart-fill"></b-icon>
                   {{ post.likes }} Likes
                 </span>
-                {{ post.publishDate }}
+                {{ getDate(post.publishDate) }}
               </b-list-group-item>
             </b-list-group>
             <b-button-group class="justify-content-center mt-3">
-              <b-button v-b-toggle.my-collapse @click="handleCommentClick(post.id)">Show post comments</b-button>
-              <b-button @click="handleClickOnOwner(post.id)"
-                >Get owner profile</b-button
-              >
+              <b-button @click="handleCommentClick(post.id)">
+                Show post comments
+              </b-button>
+              <b-button @click="handleClickOnOwner(post.id)">
+                Get owner profile
+              </b-button>
             </b-button-group>
-            <b-collapse class="pt-3" id="my-collapse">
-              <b-card> {{ comments }} </b-card>
+            <b-collapse
+              :visible="comments && post.id === selectedPost"
+              id="my-collapse"
+              class="pt-3"
+            >
+              <b-card class="text-left">
+                <div v-if="comments && comments.length">
+                  <ul v-for="comment in comments" :key="comment.id">
+                    <li>{{ comment.message }}</li>
+                  </ul>
+                </div>
+                <div v-else class="text-center">
+                  <p>There are no comments</p>
+                </div>
+              </b-card>
             </b-collapse>
           </b-card>
         </b-card-group>
@@ -53,37 +68,44 @@
 
 <script>
 import { mapState } from "vuex";
+import moment from 'moment'
 
 export default {
   data() {
     return {
       response: null,
       id: this.$route.params.id,
+      visible: true,
+      selectedPost: null,
     };
   },
   computed: {
-    ...mapState("post", ["post", "loading", "posts", "postLoading"]),
-    ...mapState("comment", ["loading", "comment", "comments"])
+    ...mapState("post", ["loading", "posts", "postLoading"]),
+    ...mapState("comment", ["loading", "comments"]),
   },
   async mounted() {
     await this.$store.dispatch("post/fetchUserPosts", this.id);
   },
   methods: {
+    getDate(date){
+      return moment(date).format("DD.MM.YYYY")
+    },
     backClickHandle() {
       this.$router.push("../user");
     },
     handleClickOnOwner(userId) {
       this.$router.push(`../Profile/${userId}`);
     },
-    handleCommentClick() {
-      this.$store.dispatch("comment/fetchComment")
-    }
+    handleCommentClick(postId) {
+      this.selectedPost = postId;
+      this.$store.dispatch("comment/fetchComments", postId);
+      console.log(this.response);
+    },
   },
 };
 </script>
 
 <style>
-
 .span-tag {
   background-color: rgb(91, 29, 172);
   margin: 5px;

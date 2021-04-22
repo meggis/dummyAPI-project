@@ -3,7 +3,6 @@ import { createSettersFromStateKeys } from '../utils/store-helper'
 const initialState = {
   posts: null,
   loading: false,
-  post: null,
   postLoading: false
 }
 
