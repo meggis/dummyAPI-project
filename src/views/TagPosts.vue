@@ -10,6 +10,7 @@
       </b-row>
       <b-card-group columns>
         <b-card v-for="post in posts" class="p-3 mb-4" :key="post.id">
+          <!-- <pre>{{ post }}</pre> -->
           <template #header>
             <h4 class="mb-0 text-left">
               <span class="span-text"
@@ -36,17 +37,38 @@
             </b-list-group-item>
           </b-list-group>
           <b-button-group class="justify-content-center mt-3">
-            <b-button @click="handleClickOnComment()"
+            <b-button @click="handleClickOnComment(post.id)"
               >Get post comments</b-button
             >
             <b-button @click="handleClickOnOwner(post.owner.id)"
               >Get owner profile</b-button
             >
           </b-button-group>
+                      <b-collapse
+              :visible="post.id === selectedPost"
+              id="my-collapse"
+              class="pt-3"
+            >
+              <b-card class="text-left">
+                <div v-if="loadingComments" class="text-center my-3">
+                  <b-spinner label="Loading..."></b-spinner>
+                </div>
+                  <div v-else>
+                    <div v-if="comments && comments.length">
+                      <ul v-for="comment in comments" :key="comment.id">
+                        <li>
+                          <span>{{ comment.message }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-else class="text-center">
+                      <p>There are no comments</p>
+                    </div>
+                </div>
+              </b-card>
+            </b-collapse>
         </b-card>
       </b-card-group>
-      <!-- <pre class="text-left">{{ user }}</pre> -->
-      <!-- <pre class="text-left">{{ users }}</pre> -->
     </b-container>
   </div>
 </template>
@@ -59,29 +81,31 @@ export default {
   data() {
     return {
       response: null,
+      selectedPost: null,
+      title: this.$route.params.title,
     };
   },
   computed: {
-    ...mapState("post", ["post", "loading", "posts"]),
+    ...mapState("post", ["loading", "posts", "postLoading"]),
+    // ...mapState("comment", ["loadingComments", "comments"]),
+
   },
   async mounted() {
-    await this.$store.dispatch("post/fetchPostsList");
+    await this.$store.dispatch("post/fetchPostsByTag", this.title);
   },
-  methods: {
-    // async handlePostClick(post) {
-    //   await this.$store.dispatch("comment/fetchComment", post.id);
-    // },
-    handleClickOnComment() {
-      this.$router.push("./");
-    },
-    handleClickOnOwner(userId) {
-      this.$router.push(`./Profile/${userId}`);
-    },
-  },
+  // methods: {
+  //   handleClickOnOwner(userId) {
+  //     this.$router.push(`./profile/${userId}`);
+  //   },
+  //   handleClickOnComment(postId) {
+  //     this.selectedPost = postId;
+  //     this.$store.dispatch("comment/fetchComments", postId);
+  //   },
+  // },
 };
 </script>
 
-<style>
+<style scoped>
 @import "../styles/styles.css";
 
 h4 {

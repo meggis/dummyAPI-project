@@ -8,6 +8,7 @@
         <router-link to="/tag">Post by tag</router-link>
         <router-link to="/profile"></router-link>
         <router-link to="/user-posts"></router-link>
+        <router-link to="/posts-tag"></router-link>
       </div>
     <router-view />
   </div>

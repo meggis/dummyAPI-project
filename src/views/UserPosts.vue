@@ -36,26 +36,33 @@
               </b-list-group-item>
             </b-list-group>
             <b-button-group class="justify-content-center mt-3">
-              <b-button @click="handleCommentClick(post.id)">
+              <b-button @click="handleCommentClick(post.id);">
                 Show post comments
               </b-button>
-              <b-button @click="handleClickOnOwner(post.id)">
+              <b-button @click="handleClickOnOwner(post.owner.id)">
                 Get owner profile
               </b-button>
             </b-button-group>
             <b-collapse
-              :visible="comments && post.id === selectedPost"
+              :visible="post.id === selectedPost"
               id="my-collapse"
               class="pt-3"
             >
               <b-card class="text-left">
-                <div v-if="comments && comments.length">
-                  <ul v-for="comment in comments" :key="comment.id">
-                    <li>{{ comment.message }}</li>
-                  </ul>
+                <div v-if="loadingComments" class="text-center my-3">
+                  <b-spinner label="Loading..."></b-spinner>
                 </div>
-                <div v-else class="text-center">
-                  <p>There are no comments</p>
+                  <div v-else>
+                    <div v-if="comments && comments.length">
+                      <ul v-for="comment in comments" :key="comment.id">
+                        <li>
+                          <span>{{ comment.message }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-else class="text-center">
+                      <p>There are no comments</p>
+                    </div>
                 </div>
               </b-card>
             </b-collapse>
@@ -68,44 +75,51 @@
 
 <script>
 import { mapState } from "vuex";
-import moment from 'moment'
+import moment from "moment";
 
 export default {
   data() {
     return {
       response: null,
       id: this.$route.params.id,
-      visible: true,
+      visible: false,
       selectedPost: null,
     };
   },
   computed: {
     ...mapState("post", ["loading", "posts", "postLoading"]),
-    ...mapState("comment", ["loading", "comments"]),
+    ...mapState("comment", ["loadingComments", "comments"]),
   },
   async mounted() {
     await this.$store.dispatch("post/fetchUserPosts", this.id);
   },
   methods: {
-    getDate(date){
-      return moment(date).format("DD.MM.YYYY")
+    getDate(date) {
+      return moment(date).format("DD.MM.YYYY");
     },
     backClickHandle() {
       this.$router.push("../user");
     },
-    handleClickOnOwner(userId) {
-      this.$router.push(`../Profile/${userId}`);
-    },
     handleCommentClick(postId) {
+      // if (this.visible) {
+      //   this.visible = false;
+      //   return;
+      // }
+      // this.visible = true;
       this.selectedPost = postId;
       this.$store.dispatch("comment/fetchComments", postId);
-      console.log(this.response);
     },
+        handleClickOnOwner(userId) {
+      this.$router.push(`../profile/${userId}`)
+    },
+    // show() {
+    //   this.visible = !this.visible
+    // }
   },
 };
 </script>
 
-<style>
+<style scoped>
 .span-tag {
   background-color: rgb(91, 29, 172);
   margin: 5px;
@@ -175,5 +189,18 @@ export default {
 .card-header {
   padding: 0 0 5px 0;
   background-color: white;
+}
+
+.collapsed > .when-open,
+.not-collapsed > .when-closed {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 </style>

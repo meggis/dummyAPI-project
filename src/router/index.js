@@ -20,8 +20,8 @@ const routes = [
   },
   {
     path: '/post',
-    name: 'Post',
-    component: () => import('../views/Post.vue')
+    name: 'PostsView',
+    component: () => import('../views/PostsView.vue')
   },
   {
     path: '/comment/:id',
@@ -30,7 +30,7 @@ const routes = [
   },
   {
     path: '/tag',
-    name: 'Tag',
+    name: 'TagList',
     component: () => import ('../views/Tag.vue')
   },
   {
@@ -42,6 +42,11 @@ const routes = [
     path: '/user-posts/:id',
     name: 'UserPosts',
     component: () => import ('../views/UserPosts.vue')
+  },
+  {
+    path: '/posts-tag/:title',
+    name: 'TagsOfPosts',
+    component: () => import ('../views/TagPosts.vue')
   }
 ]
 

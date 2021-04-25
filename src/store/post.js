@@ -441,9 +441,6 @@ export default ({ postApi }) => {
         commit('setLoading', false)
       }
     },
-    // async fetchSinglePost({ commit }, postId) {
-    //   commit('setPost', await postApi.getSinglePost(postId))
-    // },
     async fetchUserPosts({ commit }, userId) {
       commit('setPostLoading', true)
       try {
@@ -452,9 +449,14 @@ export default ({ postApi }) => {
         commit('setPostLoading', false)
       }
     },
-    // async getPostsByTag({ commit }, tagTitle) {
-    //   commit('setTagPosts', await postApi.getPostsByTag(tagTitle))
-    // }
+    async fetchPostsByTag({ commit }, tagTitle) {
+      commit('setPostLoading', true)
+      try {
+        commit('setPosts', await postApi.getPostsByTag(tagTitle))
+      } finally {
+        commit('setPostLoading', false)
+      }
+    }
   }
 
   const mutations = {}

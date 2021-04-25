@@ -49,7 +49,7 @@
           <hr />
           <b-row>
             <b-col class="mt-3">
-              <a href="#" @click="handlePostClick()" class="link"
+              <a @click="handleGetPostClick($event, user.id)" class="link"
                 >Get posts list</a
               >
             </b-col>
@@ -104,6 +104,10 @@ export default {
     backClickHandle() {
       this.$router.push("../user");
     },
+    handleGetPostClick(event, userId) {
+      this.$router.push(`../user-posts/${userId}`)
+      event.preventDefault();
+    }
   },
 };
 </script>
