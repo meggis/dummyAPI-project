@@ -24,11 +24,6 @@ const routes = [
     component: () => import('../views/PostsView.vue')
   },
   {
-    path: '/comment/:id',
-    name: 'Comment',
-    component: () => import('../views/Comment.vue')
-  },
-  {
     path: '/tag',
     name: 'TagList',
     component: () => import ('../views/Tag.vue')

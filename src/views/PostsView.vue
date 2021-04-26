@@ -1,5 +1,5 @@
 <template>
-  <div class="User Endpoints">
+  <div class="User Endpoints text-center">
     <b-container>
       <b-row class="mt-0 p-5">
         <b-col>

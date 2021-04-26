@@ -4,49 +4,37 @@
         <router-link to="/">Home</router-link>
         <router-link to="/user">User list</router-link>
         <router-link to="/post">Posts list</router-link>
-        <!-- <router-link to="/comment"></router-link> -->
         <router-link to="/tag">Post by tag</router-link>
         <router-link to="/profile"></router-link>
         <router-link to="/user-posts"></router-link>
         <router-link to="/posts-tag"></router-link>
       </div>
     <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+import Footer from './views/Footer'
+export default {
+  name: "Home",
+  components: {
+    Footer
+  }
+}
+</script>
+
 <style>
-@import "./styles/styles.css";
-
-html {
-  height: 100%;
-}
-
-a:-webkit-any-link {
-  text-decoration: none;
-}
-
 hr {
   color: white;
   height: 10px;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
-  font-size: 10px;
-}
-
-#app {
-  text-align: center;
 }
 
 #nav {
   padding: 30px;
   color: white;
   border-bottom: solid white 1px;
+  text-align: center
 }
 
 #nav a {
@@ -63,6 +51,8 @@ body {
   border-bottom: solid white 1px;
 }
 
-
+p.p-class.text-left {
+  margin-bottom: 0px;
+}
 
 </style>

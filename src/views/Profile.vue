@@ -1,22 +1,29 @@
 <template>
-  <div class="py-5">
-    <b-button @click="backClickHandle()">Go back to user list</b-button>
-    <div v-if="userLoading" class="mt-4">
-      <b-spinner variant="light" label="Loading..."></b-spinner>
-    </div>
-    <div v-if="user && id && !userLoading">
-      <b-container class="py-5">
+  <b-container class="py-5">
+    <div class="text-center">
+      <b-button-group>
+        <b-button class="home-button" @click="backToUsersClickHandle()"
+          >Go back to user list</b-button>
+        <b-button class="home-button" @click="handleGoBack()">Go back</b-button>
+      </b-button-group>
+      <div v-if="userLoading" class="mt-4">
+        <b-spinner variant="light" label="Loading..."></b-spinner>
+      </div>
+      <div class="pt-5" v-if="user && id && !userLoading">
         <b-card>
           <b-row align-v="center" align-h="between">
             <b-col md="4">
-              <b-card-img :src="user.picture" fluid >
-              </b-card-img>
+              <b-card-img :src="user.picture" fluid> </b-card-img>
             </b-col>
             <b-col md="4">
               <b-list-group class="text-left">
                 <b-list-group-item>
                   <p><strong>Id: </strong> {{ user.id }}</p>
-                  <p class="bigger-font"><strong>{{ user.title + " " + user.firstName + " " + user.lastName }}</strong></p>
+                  <p class="bigger-font">
+                    <strong>{{
+                      user.title + " " + user.firstName + " " + user.lastName
+                    }}</strong>
+                  </p>
                   <p><strong>Gender: </strong> {{ user.gender }}</p>
                   <p><strong>Date of birth: </strong>{{ user.dateOfBirth }}</p>
                   <p><strong>Register date: </strong>{{ user.registerDate }}</p>
@@ -28,15 +35,19 @@
             <b-col md="4" class="mb-3">
               <b-list-group class="text-left">
                 <b-list-group-item>
-                  <p><strong>Address: </strong>{{
-                    user.location.country +
-                    ", " +
-                    user.location.state +
-                    ", " +
-                    user.location.city +
-                    ", " +
-                    user.location.street }}</p>
-                  </b-list-group-item>
+                  <p>
+                    <strong>Address: </strong
+                    >{{
+                      user.location.country +
+                      ", " +
+                      user.location.state +
+                      ", " +
+                      user.location.city +
+                      ", " +
+                      user.location.street
+                    }}
+                  </p>
+                </b-list-group-item>
               </b-list-group>
               <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
                Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
@@ -49,15 +60,14 @@
           <hr />
           <b-row>
             <b-col class="mt-3">
-              <a @click="handleGetPostClick($event, user.id)" class="link"
-                >Get posts list</a
-              >
+              <b-button class="card-button" @click="handleGetPostClick(user.id)"
+                >Get posts list</b-button>
             </b-col>
           </b-row>
         </b-card>
-      </b-container>
+      </div>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -89,9 +99,6 @@ export default {
       .then(({ data }) => data)
       .then(({ data }) => data);
   },
-  async beforeDestroy() {
-    this.$store.dispatch("user/destroyUser");
-  },
   // async geocode() {
   // .then(function(response) {
   //   console.log(response)
@@ -101,40 +108,25 @@ export default {
   // })
   // },
   methods: {
-    backClickHandle() {
+    backToUsersClickHandle() {
       this.$router.push("../user");
     },
-    handleGetPostClick(event, userId) {
-      this.$router.push(`../user-posts/${userId}`)
-      event.preventDefault();
+    handleGetPostClick(userId) {
+      this.$router.push(`../user-posts/${userId}`);
+    },
+        handleGoBack() {
+      this.$router.go(-1)
     }
   },
 };
 </script>
 
 <style scoped>
-.btn-secondary {
-  background-color: transparent;
-  border-color: white;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: white;
-  border-color: transparent;
-  color: #f43b47;
-}
-
 .list-group-item {
   border: 0px;
 }
 
-.link {
-  color: #3a11be;
-}
-
 .bigger-font {
-  font-size: 18px;
+  font-size: 25px;
 }
-
 </style>

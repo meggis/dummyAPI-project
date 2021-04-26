@@ -1,17 +1,17 @@
 <template>
   <div class="User Endpoints">
     <b-container>
-      <b-row class="mt-0 p-5">
+      <b-row class="mt-0 p-5 text-center">
         <b-col>
           <p class="p-colour">
             See some example of random post tags.
           </p>
         </b-col>
       </b-row>
-      <b-card>
+      <b-card class="text-center">
         <b-card-body>If you want to see post filtered by tagname, pick one listed below: </b-card-body>
-        <div v-for="tag in tags" :key="tag">
-          <b-button @click="handleTagClick(tag)">{{ tag }}</b-button>
+        <div class="span-class" v-for="tag in tags" :key="tag">
+          <b-button class="card-button" @click="handleTagClick(tag)">{{ tag }}</b-button>
         </div>
       </b-card>
     </b-container>
@@ -41,3 +41,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.span-class {
+  padding-right: 4px;
+  padding-top: 4px;
+  display: inline-block;
+}
+
+.card-button {
+  font-size: 15px;
+}
+</style>

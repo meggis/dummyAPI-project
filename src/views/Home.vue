@@ -14,13 +14,13 @@
         </b-col>
       </b-row>
       <hr />
-      <div class="buttons">
+      <div class="text-center buttons">
         <h5>Click on links to move between different data sets.</h5>
-        <b-row align-v="center" align-h="center" class="pt-4">
+        <b-row class="pt-4">
           <b-col>
-            <b-button class="mr-3" @click="userHandlerClick()">User List</b-button>
-            <b-button class="mr-3" @click="postsHandlerClick()">Posts List</b-button>
-            <b-button @click="tagHandlerClick()">Post by Tag</b-button>
+            <b-button class="mr-3 home-button" @click="userHandlerClick()">User List</b-button>
+            <b-button class="mr-3 home-button" @click="postsHandlerClick()">Posts List</b-button>
+            <b-button class="home-button" @click="tagHandlerClick()">Post by Tag</b-button>
           </b-col>
         </b-row>
       </div>
@@ -44,19 +44,10 @@ export default {
 </script>
 
 <style scoped>
-  .buttons {
+@import "../styles/styles.css";
+
+.buttons {
   padding: 80px;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: white;
-}
-
-.btn-secondary:hover {
-  background-color: white;
-  border-color: transparent;
-  color: #f43b47;
 }
 
 .font-color {
@@ -64,7 +55,7 @@ export default {
 }
 
 a {
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 a:hover {
