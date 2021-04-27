@@ -1,4 +1,4 @@
-# pizza-project
+# public-Api-project
 
 ## Project setup
 ```
