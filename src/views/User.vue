@@ -55,8 +55,6 @@ export default {
     //dispath zawsze odnosi się do akcji w storze
     //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają)
     await this.$store.dispatch("user/fetchUsers");
-
-    
   },
   methods: {
     handleClickOnUser(userId) {
@@ -68,6 +66,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .card-body {
   font-size: 11px;
@@ -77,5 +76,4 @@ footer.card-footer {
   padding: 0;
   padding-top: 16px;
 }
-
 </style>

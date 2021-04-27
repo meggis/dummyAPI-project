@@ -77,12 +77,10 @@ const access_key = "c5e5ddf68ce26712ade1b487127b77c7";
 
 export default {
   name: "Profile",
-
   data() {
     return {
       response: null,
       id: this.$route.params.id,
-      // address: location,
     };
   },
   computed: {
@@ -98,14 +96,6 @@ export default {
       .then(({ data }) => data)
       .then(({ data }) => data);
   },
-  // async geocode() {
-  // .then(function(response) {
-  //   console.log(response)
-  // })
-  // .catch(function(error) {
-  //   console.log(error)
-  // })
-  // },
   methods: {
     backToUsersClickHandle() {
       this.$router.push("../user");
