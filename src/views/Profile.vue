@@ -45,7 +45,7 @@
                       }}
                     </p>
                   </b-col>
-                  <b-col md="6" class="text-left">
+                  <b-col md="6" class="text-left p-0">
                     <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
                   Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
                   Now, location data is ready to use in google maps.-->
