@@ -10,10 +10,10 @@
       <div v-if="userLoading" class="mt-4">
         <b-spinner variant="light" label="Loading..."></b-spinner>
       </div>
-      <div class="pt-5" v-if="user && id && !userLoading">
+      <div class="py-5" v-if="user && id && !userLoading">
         <b-card class="overflow-hidden">
           <b-row align-v="center">
-            <b-col class="background-color" md="4">
+            <b-col class="background" md="4">
               <p class="p-element"><strong>Id: </strong> {{ user.id }}</p>
               <b-card-img class="user-image" :src="user.picture" fluid>
               </b-card-img>
@@ -129,5 +129,11 @@ export default {
 
 .p-element {
   padding: 20px 0px 20px 0px;
+}
+
+@media (min-width: 768px) {
+  .background {
+    border-right: 1px solid rgb(199, 199, 199);
+  }
 }
 </style>
