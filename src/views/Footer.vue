@@ -1,26 +1,20 @@
 <template>
-  <div class="wrapper text-center">
-      <b-row>
+  <div class="text-center">
         <b-col class="footer-class">
         © 2021 Copyright: <a href='https://github.com/meggis'> Magdalena Siekańska </a>
         </b-col>
-      </b-row>
   </div>
 </template>
 
 <style scoped>
-.wrapper {
-  min-height: 100%;
-  height: 100%;
-  margin: 0 auto -50px
-}
-
 .footer-class {
-  margin-top: 50px;
-  height: 50px;
   border-top: 1px solid rgb(255, 255, 255);
-  padding-top: 20px;
+  padding: 20px 0px 20px 0px;
   color: rgb(255, 255, 255);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 }
 
 a {

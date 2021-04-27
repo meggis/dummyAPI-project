@@ -44,8 +44,6 @@ export default {
 </script>
 
 <style scoped>
-@import "../styles/styles.css";
-
 .buttons {
   padding: 80px;
 }

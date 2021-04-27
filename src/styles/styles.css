@@ -1,6 +1,5 @@
-html, body {
+html {
   height: 100%;
-  margin: 0;
 }
 
 a:-webkit-any-link {
@@ -17,6 +16,8 @@ body {
 
 #app {
   font-size: 16px;
+  position: relative;
+  min-height: 100vh;
 }
 
 .home-button {
@@ -27,7 +28,7 @@ body {
 .home-button:hover {
   background-color: white;
   border-color: transparent;
-  color: #f43b47;
+  color: rgb(214, 41, 107);
 }
 
 .card-button {

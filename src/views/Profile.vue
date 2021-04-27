@@ -3,65 +3,63 @@
     <div class="text-center">
       <b-button-group>
         <b-button class="home-button" @click="backToUsersClickHandle()"
-          >Go back to user list</b-button>
+          >Go back to user list</b-button
+        >
         <b-button class="home-button" @click="handleGoBack()">Go back</b-button>
       </b-button-group>
       <div v-if="userLoading" class="mt-4">
         <b-spinner variant="light" label="Loading..."></b-spinner>
       </div>
       <div class="pt-5" v-if="user && id && !userLoading">
-        <b-card>
-          <b-row align-v="center" align-h="between">
-            <b-col md="4">
-              <b-card-img :src="user.picture" fluid> </b-card-img>
+        <b-card class="overflow-hidden">
+          <b-row align-v="center">
+            <b-col class="background-color" md="4">
+              <p class="p-element"><strong>Id: </strong> {{ user.id }}</p>
+              <b-card-img class="user-image" :src="user.picture" fluid>
+              </b-card-img>
+              <p class="p-element"><strong>Email: </strong> {{ user.email }}</p>
             </b-col>
-            <b-col md="4">
-              <b-list-group class="text-left">
-                <b-list-group-item>
-                  <p><strong>Id: </strong> {{ user.id }}</p>
-                  <p class="bigger-font">
-                    <strong>{{
-                      user.title + " " + user.firstName + " " + user.lastName
-                    }}</strong>
-                  </p>
-                  <p><strong>Gender: </strong> {{ user.gender }}</p>
-                  <p><strong>Date of birth: </strong>{{ user.dateOfBirth }}</p>
-                  <p><strong>Register date: </strong>{{ user.registerDate }}</p>
-                  <p><strong>Email: </strong> {{ user.email }}</p>
-                  <p><strong>Phone: </strong> {{ user.phone }}</p>
-                </b-list-group-item>
-              </b-list-group>
-            </b-col>
-            <b-col md="4" class="mb-3">
-              <b-list-group class="text-left">
-                <b-list-group-item>
-                  <p>
-                    <strong>Address: </strong
-                    >{{
-                      user.location.country +
-                      ", " +
-                      user.location.state +
-                      ", " +
-                      user.location.city +
-                      ", " +
-                      user.location.street
-                    }}
-                  </p>
-                </b-list-group-item>
-              </b-list-group>
-              <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
-               Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
-               Now, location data is ready to use in google maps.-->
-              <b-card-img
-                :src="require('../components/google-maps.png')"
-              ></b-card-img>
-            </b-col>
-          </b-row>
-          <hr />
-          <b-row>
-            <b-col class="mt-3">
-              <b-button class="card-button" @click="handleGetPostClick(user.id)"
-                >Get posts list</b-button>
+            <b-col class="justify-center">
+                <p class="bigger-font text-center">
+                  <strong>{{
+                    user.title + " " + user.firstName + " " + user.lastName
+                  }}</strong>
+                </p>
+              <b-container align-h="end" class="py-4">
+                <b-row align-v="center">
+                  <b-col md="6" class="text-left">
+                    <p><strong>Gender: </strong> {{ user.gender }}</p>
+                    <p><strong>Date of birth: </strong>{{ getDate(user.dateOfBirth) }}</p>
+                    <p><strong>Register date: </strong>{{ getDate(user.registerDate) }}</p>
+                    <p><strong>Phone: </strong> {{ user.phone }}</p>
+                                    <p>
+                      <strong>Address: </strong
+                      >{{
+                        user.location.country +
+                        ", " +
+                        user.location.state +
+                        ", " +
+                        user.location.city +
+                        ", " +
+                        user.location.street
+                      }}
+                    </p>
+                  </b-col>
+                  <b-col md="6" class="text-left">
+                    <!-- Here should be div with google map API but because of additional payment instead of map componen here is some photo of map, picturing the contest.
+                  Because Dummy API return data location model without latitude and longitude info, reverse geocoding has been made by additional API - positionstack.
+                  Now, location data is ready to use in google maps.-->
+                    <b-card-img
+                      :src="require('../components/google-maps.png')"
+                    ></b-card-img>
+                  </b-col>
+
+                </b-row>
+              </b-container>
+              <p class="mt-1">
+                <b-button class="card-button" @click="handleGetPostClick(user.id)"
+                  >Get posts list</b-button>
+              </p>
             </b-col>
           </b-row>
         </b-card>
@@ -73,6 +71,7 @@
 <script>
 import { mapState } from "vuex";
 import axios from "axios";
+import moment from "moment";
 
 const access_key = "c5e5ddf68ce26712ade1b487127b77c7";
 
@@ -114,9 +113,12 @@ export default {
     handleGetPostClick(userId) {
       this.$router.push(`../user-posts/${userId}`);
     },
-        handleGoBack() {
-      this.$router.go(-1)
-    }
+    handleGoBack() {
+      this.$router.go(-1);
+    },
+    getDate(date) {
+      return moment(date).format("DD.MM.YYYY");
+    },
   },
 };
 </script>
@@ -127,6 +129,15 @@ export default {
 }
 
 .bigger-font {
-  font-size: 25px;
+  font-size: 45px;
+}
+
+.user-image {
+  border-radius: 50%;
+  border: 10px solid rgb(214, 41, 107);
+}
+
+.p-element {
+  padding: 20px 0px 20px 0px;
 }
 </style>

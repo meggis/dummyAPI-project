@@ -5,11 +5,8 @@
         <router-link to="/user">User list</router-link>
         <router-link to="/post">Posts list</router-link>
         <router-link to="/tag">Post by tag</router-link>
-        <router-link to="/profile"></router-link>
-        <router-link to="/user-posts"></router-link>
-        <router-link to="/posts-tag"></router-link>
       </div>
-    <router-view />
+    <router-view class="page-container"/>
     <Footer />
   </div>
 </template>
@@ -55,4 +52,7 @@ p.p-class.text-left {
   margin-bottom: 0px;
 }
 
+.page-container {
+  padding-bottom: 60px;
+}
 </style>
