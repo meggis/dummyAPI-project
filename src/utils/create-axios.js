@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const headers = { 'app-id': '6082ca9926834928e87468f2' }
 
-export default baseUrl => {
+export default (baseUrl) => {
   const axiosInstance = axios.create({ baseURL: baseUrl, headers })
 
   axiosInstance.setLocaleInterceptor = function (localeState) {

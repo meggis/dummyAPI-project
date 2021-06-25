@@ -23,7 +23,9 @@ const axios = createAxios(baseUrl)
 const api = createApi({ axios })
 const store = createStore({ ...api, axios })
 
-//tutaj wrzucasz wszystkie nowe obiekty
+//tutaj wrzucasz wszystkie nowe obiekty;
+//Vuex provides a mechanism to "inject" the store into all child components from the root component with the store option (enabled by Vue.use(Vuex)
+//
 new Vue({
   router,
   store,

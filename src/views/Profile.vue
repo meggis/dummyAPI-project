@@ -88,7 +88,6 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("user/fetchUser", this.id);
-    // this.response = await axios.get('http://api.positionstack.com/v1/forward?access_key=c5e5ddf68ce26712ade1b487127b77c7&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC')
     this.response = await axios
       .get("http://api.positionstack.com/v1/forward", {
         params: { access_key, query: `${this.user.location}` },
