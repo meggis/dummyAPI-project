@@ -1,4 +1,4 @@
-# pizza-project
+# dummyAPI-project
 
 ## Project setup
 ```
