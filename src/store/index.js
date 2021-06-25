@@ -8,7 +8,6 @@ import createTagStore from './tag'
 
 Vue.use(Vuex)
 
-//podpinanie pod store i przekazywanie parametrów
 export default (deps) => {
   return new Vuex.Store({
     modules: {

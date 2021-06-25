@@ -46,14 +46,10 @@ export default {
       response: null,
     };
   },
-  //metody które używa się w computed nie przyjmują parametrów i od razu są odpalane
   computed: {
-    // mapuje dane ze store
     ...mapState("user", ["users", "loading", "user"]),
   },
   async mounted() {
-    //dispath zawsze odnosi się do akcji w storze
-    //jeżeli jest więcej dispatchów to musisz złapać je w array w promisach(bo to zwracają)
     await this.$store.dispatch("user/fetchUsers");
   },
   methods: {
