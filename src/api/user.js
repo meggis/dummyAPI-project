@@ -1,5 +1,3 @@
-//skąd jest brany axios?
-
 export default ({ axios }) => {
   return {
     async getUsers () {
