@@ -94,7 +94,7 @@ export default {
       return moment(date).format("DD.MM.YYYY");
     },
     handleClickOnOwner(userId) {
-      this.$router.push(`../profile/${userId}`);
+      this.$router.push(`../user/${userId}`);
     },
     handleClickOnComment(postId) {
       this.selectedPost = postId;

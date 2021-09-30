@@ -28,7 +28,8 @@ export default ({ postApi }) => {
     async fetchPostsByTag({ commit }, tagTitle) {
       commit('setPostLoading', true)
       try {
-        commit('setPosts', await postApi.getPostsByTag(tagTitle))
+        const postsTag = await postApi.getPostsByTag(tagTitle)
+        commit('setPosts', postsTag)
       } finally {
         commit('setPostLoading', false)
       }

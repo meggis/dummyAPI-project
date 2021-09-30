@@ -1,7 +1,8 @@
   
 import axios from 'axios'
 
-const headers = { 'app-id': '6082ca9926834928e87468f2' }
+const headers = { 'app-id': '61562942bfcffa660b81be92' }
+
 
 export default (baseUrl) => {
   const axiosInstance = axios.create({ baseURL: baseUrl, headers })

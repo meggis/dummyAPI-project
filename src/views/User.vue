@@ -30,7 +30,6 @@
             </template>
           </b-card>
         </b-card-group>
-
         </b-col>
       </b-row>
     </b-container>
@@ -54,10 +53,11 @@ export default {
   },
   methods: {
     handleClickOnUser(userId) {
-      this.$router.push(`./profile/${userId}`)
+      this.$router.push(`./user/${userId}`)
+      
     },
     handleClickOnUserPost(userId) {
-      this.$router.push(`./user-posts/${userId}`)
+      this.$router.push(`./user/${userId}/post`)
     },
   },
 };

@@ -29,17 +29,17 @@ const routes = [
     component: () => import ('../views/Tag.vue')
   },
   {
-    path: '/profile/:id',
+    path: '/user/:id',
     name: 'UserProfile',
     component: () => import ('../views/Profile.vue')
   },
   {
-    path: '/user-posts/:id',
+    path: '/user/:id/post',
     name: 'UserPosts',
     component: () => import ('../views/UserPosts.vue')
   },
   {
-    path: '/posts-tag/:title',
+    path: '/tag/:id/post',
     name: 'TagsOfPosts',
     component: () => import ('../views/TagPosts.vue')
   }

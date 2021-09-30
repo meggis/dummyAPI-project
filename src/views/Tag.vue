@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     handleTagClick(tagTitle) {
-      this.$router.push(`./posts-tag/${tagTitle}`)
+      this.$router.push(`./tag/${tagTitle}/post`)
     }
   },
 }

@@ -100,7 +100,7 @@ export default {
       this.$router.push("../user");
     },
     handleGetPostClick(userId) {
-      this.$router.push(`../user-posts/${userId}`);
+      this.$router.push(`../user/${userId}/post`);
     },
     handleGoBack() {
       this.$router.go(-1);

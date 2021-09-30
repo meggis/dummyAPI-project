@@ -15,8 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import "./styles/styles.css";
 
 
-
-const baseUrl = 'https://dummyapi.io/data/api'
+const baseUrl = 'https://dummyapi.io/data/v1/'
 
 const axios = createAxios(baseUrl)
 const api = createApi({ axios })

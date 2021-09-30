@@ -1,10 +1,12 @@
 <template>
-<b-container>
-  <div class="User Endpoints py-5 text-center">
-    <b-button-group>
-      <b-button class="home-button" @click="backToTagsClickHandle()">Go back to tag list</b-button>
-      <b-button class="home-button" @click="handleGoBack()">Go back</b-button>
-    </b-button-group>
+  <b-container>
+    <div class="User Endpoints py-5 text-center">
+      <b-button-group>
+        <b-button class="home-button" @click="backToTagsClickHandle()"
+          >Go back to tag list</b-button
+        >
+        <b-button class="home-button" @click="handleGoBack()">Go back</b-button>
+      </b-button-group>
       <b-row class="mt-0 p-5">
         <b-col>
           <p class="p-colour">
@@ -13,20 +15,22 @@
         </b-col>
       </b-row>
 
-          <div v-if="postLoading" class="mt-4">
-      <b-spinner variant="light" label="Loading..."></b-spinner>
+      <div v-if="postLoading" class="mt-4">
+        <b-spinner variant="light" label="Loading..."></b-spinner>
+      </div>
+      <div v-if="!postLoading && posts">
+        <Posts :posts="posts" :loading="postLoading" />
+      </div>
+      <div class="p-colour" v-if="!postLoading && posts.length === 0">
+        There is no posts with that tag name.
+      </div>
     </div>
-    <div v-if="!postLoading">
-
-      <Posts :posts="posts" :loading="postLoading" />
-    </div>
-  </div>
-</b-container>
+  </b-container>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import Posts from './Posts'
+import Posts from "./Posts";
 
 export default {
   name: "TagPosts",
@@ -35,7 +39,7 @@ export default {
   },
   data() {
     return {
-      title: this.$route.params.title,
+      title: this.$route.params.id,
     };
   },
   computed: {
@@ -46,11 +50,11 @@ export default {
   },
   methods: {
     backToTagsClickHandle() {
-      this.$router.push('../Tag')
+      this.$router.push("/Tag");
     },
     handleGoBack() {
-      this.$router.go(-1)
-    }
-  }
+      this.$router.go(-1);
+    },
+  },
 };
 </script>
